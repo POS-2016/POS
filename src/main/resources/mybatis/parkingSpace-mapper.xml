@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.ParkingSpaceDao">
+
+    <resultMap id="parkingSpaceMap" type="ParkingSpace">
+        <id property="id" column="id"/>
+        <result property="spaceNumber" column="space_number"/>
+        <result property="carNumber" column="car_number"/>
+        <result property="status" column="status"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="cost" column="cost"/>
+    </resultMap>
+
+    <!--把需要查询的字段写成公用列-->
+    <sql id="base_column">
+        id,space_number,car_number,status,start_time,end_time,cost
+    </sql>
+
+    <!-- 搜素所有未逻辑删除的Servant-->
+    <select id="listAll" resultMap="parkingSpaceMap">
+        select
+        <include refid="base_column" />
+        from
+        parking_space
+    </select>
+
+    <!-- 根据 id 查询未被逻辑删除对象 -->
+    <select id="getNoDeletedObj" parameterType="Long" resultMap="parkingSpaceMap">
+        select
+        <include refid="base_column" />
+        from
+        parking_space
+        where
+        id=#{id} and
+        status="满"
+    </select>
+
+
+    <!-- 新增 ParkingSpace  -->
+    <insert id="insert" parameterType="ParkingSpace">
+        insert into
+        parking_space (space_number,car_number,status,start_time,end_time,cost)
+        values
+        (
+        #{spaceNumber},#{carNumber}, #{status}, #{startTime}, #{endTime}, #{cost}
+        )
+        <selectKey resultType="long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!--搜素查询 Servant 当前页结果列表-->
+    <select id="searchPage" parameterType="com.test.vo.searcher.ParkingSpaceManagePageSearcher"  resultMap="parkingSpaceMap">
+        select
+        <include refid="base_column" />
+        from
+        parking_space
+        <where>
+            <if test="status != null" >
+                status like CONCAT('%',#{status},'%')
+                <if test="cost !=null">
+                    and
+                </if>
+            </if>
+
+            <if test="cost != null" >
+                cost like CONCAT('%',#{cost},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

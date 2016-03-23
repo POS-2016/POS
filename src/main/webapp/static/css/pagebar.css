@@ -1,0 +1,130 @@
+/*--------------------------------
+       分页 STYLE
+----------------------------------*/
+
+#xnypager{
+    clear:both;
+    text-align:center;
+    color:#999999;
+    font-size:12px;
+    padding: 0px;
+    margin: 0 auto;
+    font-family: Tahoma,'宋体', sans-serif;
+}
+#xnypager a{
+    /*text-align: center;
+    height: 20px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #999999;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 5px;
+    border:1px solid #dddddd;
+    padding: 10px 15px;
+    width: auto;
+    overflow: hidden;*/
+    border: 1px solid #DDDDDD;
+
+    list-style: none outside none;
+    margin: 0 1px;
+    color: #797979;
+    display: inline-block;
+    padding: 5px 10px;
+
+}
+
+#xnypager span{
+    /*text-align: center;
+    height: 21px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #999999;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0px;
+    padding: 10px 3px;
+    width: auto;
+    overflow: hidden;*/
+
+
+    list-style: none outside none;
+    margin: 0 1px;
+    color: #797979;
+    display: inline-block;
+    padding: 5px 10px;
+}
+#xnypager span.disabled{
+
+    /*text-align: center;
+    height: 20px;
+    line-height: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 5px;
+    border:1px solid #dddddd;
+    padding: 9px 15px;
+    width: auto;
+
+    color: #bbbbbb;
+    background: #f6f6f6;*/
+    color: #C7C7C7;
+    background: #fff;
+    border-color: #DDDDDD;
+    cursor: no-drop;
+}
+#xnypager span.active{
+
+    /*text-align: center;
+    height: 20px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #999999;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 5px;
+    border:1px solid #dddddd;
+    padding: 9px 15px;
+    width: auto;*/
+
+    background: #d79c4c;
+    color: #ffffff;
+    border-color: #d79c4c;
+}
+#xnypager a:hover{
+    background-color:#e6e6e6;
+    border:1px solid #dddddd;
+    text-decoration: none;
+}
+#xnypager a.active{
+    color: #fff;
+    background: #65cea7;
+    text-decoration: none;
+}
+#xnypager span.normalsize{
+    font-size:12px;
+    font-weight:normal;
+
+}
+#xnypager_gopage_wrap{
+    width:70px;
+
+
+}
+#xnypager_btn_go {
+    text-align: center;
+    height: 24px;
+    width:40px;
+    line-height: 24px;
+    text-decoration: none;
+    color: #999999;
+    font-size: 12px;
+
+    border:1px solid #dddddd;
+    font-weight: normal;
+    background:#fff;
+    padding-bottom:3px;
+
+}
+#xnypager_btn_go_input{width: 28px;height: 22px;background: #fff;border:1px solid #dfdfdf; margin-top: 0px;padding: 0px;text-align: center;float:left}
