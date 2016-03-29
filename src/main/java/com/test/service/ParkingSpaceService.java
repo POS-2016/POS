@@ -4,6 +4,8 @@ import com.test.model.ParkingSpace;
 import com.test.vo.Page;
 import com.test.vo.searcher.ParkingSpaceManagePageSearcher;
 
+import java.util.List;
+
 /**
  * Created by XinLian on 2016/3/13.
  */
@@ -24,4 +26,5 @@ public interface ParkingSpaceService extends GenericService<ParkingSpace, Long> 
      * @return
      */
     Page<ParkingSpace> searchParkingSpace(ParkingSpaceManagePageSearcher parkingSpaceManagePageSearcher);
+
 }

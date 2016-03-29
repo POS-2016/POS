@@ -22,6 +22,9 @@ public class ParkingSpaceManagePageSearcher extends Page<ParkingSpace> {
 
     private String status;
     private Double cost;
+    private String startTime;
+    private String endTime;
+    private String date;
 
     public String getStatus() {
         return status;
@@ -37,5 +40,32 @@ public class ParkingSpaceManagePageSearcher extends Page<ParkingSpace> {
 
     public void setCost(Double cost) {
         this.cost = cost;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getDate() {
+        if(this.startTime == null || this.startTime.equals(""))
+            return date;
+        else
+            return this.startTime + "~" + this.endTime;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

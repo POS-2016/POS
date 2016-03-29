@@ -31,19 +31,19 @@ public class LoginController {
     }
 
     @RequestMapping(value = {"/login"},method = {RequestMethod.POST})
-    public ModelAndView checkLaogin(String username,String password,HttpServletRequest request) {
+    public ModelAndView checkLogin(String username,String password,HttpServletRequest request) {
 
-        Servant user = servantDao.getServantByUsername(username);
-        ModelAndView modelAndView = new ModelAndView("redirect:/manage/table");
+        Servant servant = servantDao.getServantByUsername(username);
+        ModelAndView modelAndView = new ModelAndView("redirect:/manage/parkingSpace/list");
 
-        if(user == null) {
+        if(servant == null) {
             System.out.print("用户名或密码错误!");
             modelAndView.setViewName("login");
             modelAndView.addObject("errorMsg", "用户名或密码错误");
             return modelAndView;
-        }else if(!PasswordEncoder.encode(String.valueOf(password), user.getUsername()).equals(user.getPassword())) {
+        }else if(!PasswordEncoder.encode(String.valueOf(password), servant.getUsername()).equals(servant.getPassword())) {
             System.out.print("用户名或密码错误!");
-            System.out.println(PasswordEncoder.encode(String.valueOf(password), user.getUsername()));
+            System.out.println(PasswordEncoder.encode(String.valueOf(password), servant.getUsername()));
             modelAndView.setViewName("login");
             modelAndView.addObject("errorMsg", "用户名或密码错误");
             return modelAndView;
@@ -51,15 +51,15 @@ public class LoginController {
 
         HttpSession session = request.getSession();
         session.setAttribute("username",username.toString());
-        session.setAttribute("userId",user.getId());
+        session.setAttribute("userId",servant.getId());
 
         if(session.getAttribute("lastUri") != null ) {
             String uri = session.getAttribute("lastUri").toString();
             session.removeAttribute("lastUri");
             modelAndView.setViewName("redirect:" + uri);
+            session.setAttribute("user", servant);
         }
 
-        modelAndView.addObject("username", user);
         return modelAndView;
     }
 

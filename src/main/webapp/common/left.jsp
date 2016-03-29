@@ -52,13 +52,16 @@
       </ul>
     </li>
 
+    <c:choose>
+      <c:when test="${user.username == 'admin'}">
     <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow icon-angle-down"></b> </a>
       <ul class="submenu">
         <li> <a href="/manage/parkingSpace/manage"> <i class="icon-double-angle-right"></i> 编辑用户 </a> </li>
         <li> <a href="/manage/parkingSpace/list"> <i class="icon-double-angle-right"></i> 用户查询</a> </li>
       </ul>
     </li>
-
+      </c:when>
+    </c:choose>
   </ul>
 </div>
 

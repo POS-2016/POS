@@ -10,10 +10,24 @@ Target Server Type    : MYSQL
 Target Server Version : 50140
 File Encoding         : 65001
 
-Date: 2016-03-23 09:16:10
+Date: 2016-03-29 15:21:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `parking_lot`
+-- ----------------------------
+DROP TABLE IF EXISTS `parking_lot`;
+CREATE TABLE `parking_lot` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(255) NOT NULL DEFAULT '可用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of parking_lot
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `parking_space`
@@ -34,7 +48,7 @@ CREATE TABLE `parking_space` (
 -- Records of parking_space
 -- ----------------------------
 INSERT INTO `parking_space` VALUES ('1', '-1', '冀H1', '空', '2016-03-17 11:48:36', '2016-03-17 11:48:40', '70.00');
-INSERT INTO `parking_space` VALUES ('553', '0', '京A0', '满', '2016-03-16 10:45:59', '2016-03-16 10:45:59', '70.00');
+INSERT INTO `parking_space` VALUES ('553', '0', '京A0', '满', '2016-03-18 10:45:59', '2016-03-18 10:45:59', '70.00');
 INSERT INTO `parking_space` VALUES ('554', '1', '京A1', '满', '2016-03-16 10:46:02', '2016-03-16 10:46:02', '50.00');
 INSERT INTO `parking_space` VALUES ('555', '2', '京A2', '满', '2016-03-16 10:46:02', '2016-03-16 10:46:02', '50.00');
 INSERT INTO `parking_space` VALUES ('556', '3', '京A3', '满', '2016-03-16 10:46:02', '2016-03-16 10:46:02', '50.00');
@@ -86,6 +100,46 @@ INSERT INTO `parking_space` VALUES ('601', '48', '京A48', '满', '2016-03-16 10
 INSERT INTO `parking_space` VALUES ('602', '49', '京A49', '满', '2016-03-16 10:46:03', '2016-03-16 10:46:03', '50.00');
 
 -- ----------------------------
+-- Table structure for `person_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `person_info`;
+CREATE TABLE `person_info` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `phone` varchar(11) NOT NULL,
+  `gander` char(2) NOT NULL,
+  `avatar` varchar(255) NOT NULL,
+  `token` varchar(32) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of person_info
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `reserve`
+-- ----------------------------
+DROP TABLE IF EXISTS `reserve`;
+CREATE TABLE `reserve` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_time` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `space_id` int(11) NOT NULL,
+  `fee` double(5,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `space_id` (`space_id`),
+  CONSTRAINT `reserve_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `person_info` (`user_id`),
+  CONSTRAINT `reserve_ibfk_2` FOREIGN KEY (`space_id`) REFERENCES `parking_lot` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of reserve
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `servant`
 -- ----------------------------
 DROP TABLE IF EXISTS `servant`;
@@ -95,7 +149,7 @@ CREATE TABLE `servant` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of servant

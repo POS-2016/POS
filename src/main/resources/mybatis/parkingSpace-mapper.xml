@@ -57,15 +57,22 @@
         from
         parking_space
         <where>
+            1 = 1
+
             <if test="status != null" >
-                status like CONCAT('%',#{status},'%')
-                <if test="cost !=null">
-                    and
-                </if>
+                and status like CONCAT('%',#{status},'%')
             </if>
 
             <if test="cost != null" >
-                cost like CONCAT('%',#{cost},'%')
+                and cost like CONCAT('%',#{cost},'%')
+            </if>
+
+            <if test="startTime != '' and startTime != null " >
+                and start_time &gt; #{startTime}
+            </if>
+
+            <if test="endTime != '' and endTime != null" >
+                and end_time &lt; #{endTime}
             </if>
         </where>
     </select>

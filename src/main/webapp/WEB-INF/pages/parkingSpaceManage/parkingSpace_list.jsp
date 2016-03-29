@@ -33,26 +33,41 @@
                     <div class="widget-main">
                         <div class="form-search">
                             <div class="row">
-
-                                <div class="col-xs-12 col-sm-8">
+                                <div class="col-xs-12 col-sm-3">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="icon-calendar bigger-110"></i>
                                         </span>
-                                        <input class="form-control" type="text" name="date-range-picker" id="date-range-picker" />
+                                        <form:input id="startTime" path="startTime" name="startTime" type="hidden"/>
+                                        <form:input id="endTime" path="endTime" name="endTime" type="hidden"/>
+                                        <input class="form-control" type="text" name="date-range-picker" id="date-range-picker" value="${parkingSpaceManagePageSearcher.date}"/>
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-8" style="margin: 10pt">
-                                    <div class="input-group">
-                                        <form:input id="cost" path="cost" class="form-control search-query" placeholder="消费查询"/>
+                                <div class="col-xs-12 col-sm-1"></div>
+
+                                <div class="col-xs-12 col-sm-3">
+                                    <div class="col-sm-3 no-padding-right" style="height: 34px; padding-top: 5px;">
+                                    <label class="control-label no-padding-right" for="cost"> 消费查询 </label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding-left">
+                                        <form:input id="cost" path="cost" class="form-control search-query" placeholder="请输入数值" value="${parkingSpaceManagePageSearcher.cost}"/>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-8">
-                                    <div class="input-group">
-                                        <form:input id="status" path="status" class="form-control search-query" placeholder="状态查询"/>
+
+                                <div class="col-xs-12 col-sm-1"></div>
+
+                                <div class="col-xs-12 col-sm-3">
+                                    <div class="col-sm-3 no-padding-right" style="height: 34px; padding-top: 5px;">
+                                        <label class="control-label no-padding-right" for="status">状态查询</label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding-left">
+                                        <form:input id="status" path="status" class="form-control search-query" placeholder="请输入空或满" value="${parkingSpaceManagePageSearcher.status}"/>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
                                 <div class="col-xs-12 col-sm-8">
                                     <div class="input-group">
                                     <span class="input-group-btn">
@@ -63,6 +78,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -125,8 +141,12 @@
 <script src="${ctx}/static/js/date-time/moment.min.js"></script>
 <script src="${ctx}/static/js/date-time/daterangepicker.min.js"></script>
 <script type="text/javascript">
+    
     jQuery(function ($) {
         $("#query").click(function () {
+            var date = $('#date-range-picker').val();
+            $('#startTime').val(date.split("~")[0]);
+            $('#endTime').val(date.split("~")[1]);
             $("#pageNo").val(1);
             $("#pageForm").submit();
         });

@@ -2,6 +2,8 @@ package com.test.dao;
 
 import com.test.model.ParkingSpace;
 
+import java.util.List;
+
 /**
  * Created by XinLian on 2016/3/13.
  */
