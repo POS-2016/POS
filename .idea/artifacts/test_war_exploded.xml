@@ -39,6 +39,7 @@
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
           <element id="library" level="project" name="Maven: opensymphony:sitemesh:2.4.2" />
+          <element id="library" level="project" name="Maven: joda-time:joda-time:2.9.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">

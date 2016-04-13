@@ -13,7 +13,7 @@
     <meta http-equiv="Expires" content="0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="后台管理系统" />
-    <title><decorator:title/>后台管理系统</title>
+    <title><decorator:title/> | 后台管理系统</title>
     <link rel="stylesheet" href="${ctx}/static/css/bootstrap.min.css" />
     <link rel="stylesheet" href="${ctx}/static/css/font-awesome.min.css" />
     <link rel="stylesheet" href="${ctx}/static/css/jquery-ui-1.10.3.full.min.css" />

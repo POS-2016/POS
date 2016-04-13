@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by XinLian on 2016/3/13.
@@ -36,6 +37,16 @@ public class ParkingSpaceServiceImpl extends GenericServiceImpl<ParkingSpace, Lo
         parkingSpaceManagePageSearcher.setPageSize(10);
         parkingSpaceManagePageSearcher.setResult(parkingSpaceDao.searchPage(parkingSpaceManagePageSearcher));
         return parkingSpaceManagePageSearcher;
+    }
+
+    @Override
+    public Map getParkInfoAmount(String status) {
+        return parkingSpaceDao.getParkInfoAmount(status);
+    }
+
+    @Override
+    public List<ParkingSpace> getParkInfo(String status) {
+        return parkingSpaceDao.getParkInfo(status);
     }
 
 }

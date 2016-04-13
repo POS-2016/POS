@@ -11,12 +11,8 @@ public class ParkingSpace implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int id;
-    private int spaceNumber;
-    private String carNumber;
     private String status;
-    private String startTime;
-    private String endTime;
-    private Double cost;
+    private int isEnable;
 
     public int getId() {
         return id;
@@ -24,22 +20,6 @@ public class ParkingSpace implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getSpaceNumber() {
-        return spaceNumber;
-    }
-
-    public void setSpaceNumber(int spaceNumber) {
-        this.spaceNumber = spaceNumber;
-    }
-
-    public String getCarNumber() {
-        return carNumber;
-    }
-
-    public void setCarNumber(String carNumber) {
-        this.carNumber = carNumber;
     }
 
     public String getStatus() {
@@ -50,27 +30,11 @@ public class ParkingSpace implements Serializable {
         this.status = status;
     }
 
-    public String getStartTime() {
-        return startTime.substring(0,19);
+    public int getIsEnable() {
+        return isEnable;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime.substring(0,19);
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
+    public void setIsEnable(int isEnable) {
+        this.isEnable = isEnable;
     }
 }

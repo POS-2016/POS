@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.ReserveDao">
+
+    <resultMap id="reserveMap" type="Reserve">
+        <id property="id" column="id"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="userId" column="user_id"/>
+        <result property="spaceId" column="space_id"/>
+        <result property="fee" column="fee"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <!--把需要查询的字段写成公用列-->
+    <sql id="base_column">
+        id,space_id,user_id,order_time,fee,status
+    </sql>
+
+    <!-- 搜素所有未逻辑删除的Reserve-->
+    <select id="listAll" resultMap="reserveMap">
+        select
+        <include refid="base_column" />
+        from
+        reserve
+    </select>
+
+    <!-- 根据 id 查询未被逻辑删除对象 -->
+    <select id="getNoDeletedObj" parameterType="Long" resultMap="reserveMap">
+        select
+        <include refid="base_column" />
+        from
+        reserve
+        where
+        id=#{id}
+    </select>
+
+
+    <!-- 新增 Reserve  -->
+    <insert id="insert" parameterType="Reserve">
+        insert into
+        reserve (space_id,user_id,order_time,fee)
+        values
+        (
+        #{spaceId},#{userId}, #{orderTime}, #{fee}
+        )
+        <selectKey resultType="int" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!-- 更新 Reserve  -->
+    <update id="update" parameterType="Reserve">
+        update
+        reserve
+        set
+        order_time = #{orderTime},
+        fee = #{fee},
+        status = #{status}
+        where
+        id = #{id}
+    </update>
+
+    <!-- 根据用户Id获取当前订单列表 -->
+    <select id="getCurrentReserveById"  resultMap="reserveMap">
+        select
+        <include refid="base_column" />
+        from
+        reserve
+        where
+        user_id=#{0} and
+        order_time &gt; #{1}
+    </select>
+
+    <!-- 根据用户Id获取历史订单列表 -->
+    <select id="getHistoricalReserveById"  resultMap="reserveMap">
+        select
+        <include refid="base_column" />
+        from
+        reserve
+        where
+        user_id=#{0} and
+        order_time &lt; #{1}
+    </select>
+
+    <!--搜素查询 Reserve 当前页结果列表-->
+    <select id="searchPage" parameterType="com.test.vo.searcher.ReserveManagePageSearcher"  resultMap="reserveMap">
+        select
+        <include refid="base_column" />
+        from
+        reserve
+        <where>
+            1 = 1
+
+            <if test="startTime != '' and startTime != null " >
+                and order_time &gt; #{startTimeStamp}
+            </if>
+
+            <if test="endTime != '' and endTime != null" >
+                and order_time &lt; #{endTimeStamp}
+            </if>
+
+        </where>
+    </select>
+
+</mapper>

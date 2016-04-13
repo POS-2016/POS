@@ -2,11 +2,11 @@
 <%@ include file="/common/taglibs.jsp" %>
 
 <head>
-    <title>停车位管理</title>
+    <title>订单管理</title>
     <link rel="stylesheet" href="${ctx}/static/css/daterangepicker.css"/>
 </head>
 <body>
-<form:form modelAttribute="parkingSpaceManagePageSearcher" id="pageForm">
+<form:form modelAttribute="reserveManagePageSearcher" id="pageForm">
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
             <script type="text/javascript">
@@ -38,39 +38,25 @@
                                         <span class="input-group-addon">
                                             <i class="icon-calendar bigger-110"></i>
                                         </span>
-                                            <%--<input id="startTime"  name="startTime" type="hidden"/>--%>
-                                            <%--<input id="endTime"  name="endTime" type="hidden"/>--%>
-                                        <input path="date" class="form-control" type="text" name="date-range-picker"
-                                               id="date-range-picker"  />
+                                            <input id="startTime"  name="startTime" type="hidden"/>
+                                            <input id="endTime"  name="endTime" type="hidden"/>
+                                        <form:input path="date" class="form-control" type="text" name="date-range-picker"
+                                               id="date-range-picker" value="${reserveManagePageSearcher.date}"/>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-1"></div>
 
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="col-sm-3 no-padding-right" style="height: 34px; padding-top: 5px;">
-                                        <label class="control-label no-padding-right" for="id"> 车位查询 </label>
-                                    </div>
-                                    <div class="col-sm-9 no-padding-left">
-                                        <form:input id="id" path="id" class="form-control search-query"
-                                                    placeholder="请输入数值" value="${parkingSpaceManagePageSearcher.id}"/>
-                                    </div>
-                                </div>
+                                <%--<div class="col-xs-12 col-sm-3">--%>
+                                    <%--<div class="col-sm-3 no-padding-right" style="height: 34px; padding-top: 5px;">--%>
+                                        <%--<label class="control-label no-padding-right" for="username"> 用户查询 </label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-sm-9 no-padding-left">--%>
+                                        <%--<form:input id="username" path="username" class="form-control search-query"--%>
+                                                    <%--placeholder="请输入用户" value="${personInfoManagePageSearcher.username}"/>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
 
-                                <div class="col-xs-12 col-sm-1"></div>
-
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="col-sm-3 no-padding-right" style="height: 34px; padding-top: 5px;">
-                                        <label class="control-label no-padding-right" for="status">状态查询</label>
-                                    </div>
-                                    <div class="col-sm-9 no-padding-left">
-                                        <select id="status" name="status">
-                                            <c:forEach items="${statusList}" var="statusList">
-                                                <option value="${statusList.get("key")}" <c:if test="${statusList.get('key') == parkingSpaceManagePageSearcher.status}"> selected </c:if> >${statusList.get("key")}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="row" style="margin-top: 10px">
@@ -98,16 +84,22 @@
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>车位号</th>
-                                <th>状态</th>
+                                <th>订单号</th>
+                                <th>预定时间</th>
+                                <th>用户编号</th>
+                                <th>停车位号</th>
+                                <th>费用</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${pageObj.result}" var="parkingSpace">
+                            <c:forEach items="${pageObj.result}" var="reserve">
                                 <tr>
-                                    <td>${parkingSpace.id}</td>
-                                    <td>${parkingSpace.status}</td>
+                                    <td>${reserve.id}</td>
+                                    <td>${reserve.time}</td>
+                                    <td>${reserve.userId}</td>
+                                    <td>${reserve.spaceId}</td>
+                                    <td>${reserve.fee}</td>
                                     <td>
                                         <a href="${ctx}/parkingSpaceManage/parkingSpace/manage?servantRoleID=${parkingSpace.id}">编辑</a>
                                     </td>
