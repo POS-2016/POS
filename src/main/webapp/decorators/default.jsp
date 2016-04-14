@@ -28,6 +28,17 @@
     <script src="${ctx}/static/js/ace-extra.min.js"></script>
     <decorator:head/>
     <spring:htmlEscape defaultHtmlEscape="true" />
+
+    <style type="text/css">
+        .main-content {
+            margin-left: 0px;
+            margin-right: 0;
+            margin-top: 0;
+            min-height: 100%;
+            padding: 0;
+        }
+
+    </style>
 </head>
 <body>
 <!--header start-->
@@ -39,7 +50,9 @@
     </script>
     <div class="main-container-inner">
     <%@ include file="/common/left.jsp" %>
-    <decorator:body/>
+       <div style="position: fixed; margin-left: 190px">
+           <decorator:body/>
+       </div>
     </div>
     <!--返回页面顶端-->
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="icon-double-angle-up icon-only bigger-110"></i> </a>

@@ -4,6 +4,7 @@
 <head>
     <title>订单管理</title>
     <link rel="stylesheet" href="${ctx}/static/css/daterangepicker.css"/>
+    <link rel="stylesheet" href="${ctx}/static/css/bootstrap-timepicker.css"/>
 </head>
 <body>
 <form:form modelAttribute="reserveManagePageSearcher" id="pageForm">
@@ -56,6 +57,15 @@
                                                     <%--placeholder="请输入用户" value="${personInfoManagePageSearcher.username}"/>--%>
                                     <%--</div>--%>
                                 <%--</div>--%>
+
+                                <div class="col-xs-12 col-sm-3">
+                                    <div class="input-group bootstrap-timepicker">
+                                        <input id="timepicker" type="text" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <i class="icon-time bigger-110"></i>
+                                        </span>
+                                    </div>
+                                </div>
 
                             </div>
 
@@ -127,6 +137,7 @@
 </form:form>
 <script src="${ctx}/static/js/date-time/moment.min.js"></script>
 <script src="${ctx}/static/js/date-time/daterangepicker.min.js"></script>
+<script src="${ctx}/static/js/date-time/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript">
 
     jQuery(function ($) {
@@ -138,8 +149,20 @@
             $("#pageForm").submit();
         });
 
-        $('#date-range-picker').daterangepicker().prev().on(ace.click_event, function () {
+        $('#date-range-picker').daterangepicker({
+            "timePicker": true,
+            "timePickerIncrement": 1,
+            "timePicker12Hour": false
+        }).prev().on(ace.click_event, function () {
             $(this).next().focus();
+        });
+
+        $('#timepicker').timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
         });
 
     })

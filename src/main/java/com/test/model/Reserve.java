@@ -10,19 +10,19 @@ import java.text.SimpleDateFormat;
 public class Reserve implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    private int id;
+    private Integer id;
     private Long orderTime;
     private int userId;
-    private int spaceId;
+    private Integer spaceId;
     private Double fee;
     private String time;
     private int status;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,11 +42,11 @@ public class Reserve implements Serializable{
         this.userId = userId;
     }
 
-    public int getSpaceId() {
+    public Integer getSpaceId() {
         return spaceId;
     }
 
-    public void setSpaceId(int spaceId) {
+    public void setSpaceId(Integer spaceId) {
         this.spaceId = spaceId;
     }
 
@@ -59,7 +59,7 @@ public class Reserve implements Serializable{
     }
 
     public String getTime() {
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         this.time = format.format(orderTime);
         return time;
     }

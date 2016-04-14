@@ -21,6 +21,14 @@ public interface ParkingSpaceService extends GenericService<ParkingSpace, Long> 
     long insertParkingSpace(ParkingSpace parkingSpace);
 
     /**
+     * 更新 parkingSpace
+     *
+     * @param parkingSpace
+     * @return
+     */
+    long updateParkingSpace(ParkingSpace parkingSpace);
+
+    /**
      * 获取 parkingSpaceManagePageSearcher 搜索列表当前页对象
      *
      * @param parkingSpaceManagePageSearcher

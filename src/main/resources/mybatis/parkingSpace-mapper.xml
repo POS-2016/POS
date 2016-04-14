@@ -90,4 +90,14 @@
         status = #{0}
     </select>
 
+    <!-- 更新 ParkingSpace  -->
+    <update id="update" parameterType="ParkingSpace">
+        update
+        parking_space
+        set
+        status = #{status}
+        where
+        id = #{id}
+    </update>
+
 </mapper>

@@ -10,15 +10,15 @@ import java.util.Date;
 public class ParkingSpace implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int id;
+    private Integer id;
     private String status;
     private int isEnable;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

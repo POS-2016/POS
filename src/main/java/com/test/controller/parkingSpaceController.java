@@ -91,7 +91,7 @@ public class parkingSpaceController extends BaseController{
      * 获取可用停车位
      * @return
      */
-    @RequestMapping(value = "/m/parkInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/m/parkinfo", method = RequestMethod.GET)
     public @ResponseBody
     String getParkInfo() {
 

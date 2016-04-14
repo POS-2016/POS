@@ -69,6 +69,7 @@
         where
         user_id=#{0} and
         order_time &gt; #{1}
+        and status = 0;
     </select>
 
     <!-- 根据用户Id获取历史订单列表 -->
@@ -78,8 +79,11 @@
         from
         reserve
         where
-        user_id=#{0} and
-        order_time &lt; #{1}
+        (user_id=#{0} and
+        order_time &lt; #{1})
+        or
+        (user_id=#{0} and
+        status = 1)
     </select>
 
     <!--搜素查询 Reserve 当前页结果列表-->

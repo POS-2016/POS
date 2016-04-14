@@ -2,8 +2,10 @@ package com.test.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.opensymphony.module.sitemesh.parser.HTMLPageParser;
+import com.test.model.ParkingSpace;
 import com.test.model.PersonInfo;
 import com.test.model.Reserve;
+import com.test.service.ParkingSpaceService;
 import com.test.service.PersonInfoService;
 import com.test.service.ReserveService;
 import com.test.utils.ObjectToMap;
@@ -30,6 +32,8 @@ public class ReserveController extends BaseController {
     ReserveService reserveService;
     @Autowired
     PersonInfoService personInfoService;
+    @Autowired
+    ParkingSpaceService parkingSpaceService;
 
     /**
      * 根据token获取当前订单
@@ -87,6 +91,10 @@ public class ReserveController extends BaseController {
         reserve.setFee(fee);
 
         reserveService.insertReserve(reserve);
+
+        ParkingSpace parkingSpace = parkingSpaceService.getNoDeletedObj(Long.valueOf(parks));
+        parkingSpace.setStatus("已预订");
+        parkingSpaceService.updateParkingSpace(parkingSpace);
 
         Map map = new HashMap();
         map.put("status",0);

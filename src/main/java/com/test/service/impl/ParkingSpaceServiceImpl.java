@@ -33,6 +33,11 @@ public class ParkingSpaceServiceImpl extends GenericServiceImpl<ParkingSpace, Lo
     }
 
     @Override
+    public long updateParkingSpace(ParkingSpace parkingSpace) {
+        return parkingSpaceDao.update(parkingSpace);
+    }
+
+    @Override
     public Page<ParkingSpace> searchParkingSpace(ParkingSpaceManagePageSearcher parkingSpaceManagePageSearcher) {
         parkingSpaceManagePageSearcher.setPageSize(10);
         parkingSpaceManagePageSearcher.setResult(parkingSpaceDao.searchPage(parkingSpaceManagePageSearcher));

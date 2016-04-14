@@ -19,8 +19,8 @@ public class ObjectToMap {
         for(Reserve reserve : list) {
             Map map = new HashMap();
             map.put("time",reserve.getOrderTime());
-            map.put("park",reserve.getSpaceId());
-            map.put("id",reserve.getId());
+            map.put("park",reserve.getSpaceId().toString());
+            map.put("id",reserve.getId().toString());
             map.put("fee",reserve.getFee());
 
             result.add(map);
