@@ -54,4 +54,5 @@ public class ServantServiceImpl extends GenericServiceImpl<Servant, Long> implem
     public Servant getServantByUsername(String servantUsername) {
         return servantDao.getServantByUsername(servantUsername);
     }
+
 }
