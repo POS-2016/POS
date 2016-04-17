@@ -70,7 +70,7 @@
     <!--</filter>-->
     <!--<filter-mapping>-->
         <!--<filter-name>LoginFilter</filter-name>-->
-        <!--<url-pattern>/manage/*</url-pattern>-->
+        <!--<url-pattern>/w/*</url-pattern>-->
     <!--</filter-mapping>-->
 
     <listener>

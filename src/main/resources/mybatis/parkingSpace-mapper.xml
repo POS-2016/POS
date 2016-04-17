@@ -4,20 +4,16 @@
 
     <resultMap id="parkingSpaceMap" type="ParkingSpace">
         <id property="id" column="id"/>
-        <result property="spaceNumber" column="space_number"/>
-        <result property="carNumber" column="car_number"/>
         <result property="status" column="status"/>
-        <result property="startTime" column="start_time"/>
-        <result property="endTime" column="end_time"/>
-        <result property="cost" column="cost"/>
+        <result property="isEnable" column="is_enable"/>
     </resultMap>
 
     <!--把需要查询的字段写成公用列-->
     <sql id="base_column">
-        id,space_number,car_number,status,start_time,end_time,cost
+        id,status,is_enable
     </sql>
 
-    <!-- 搜素所有未逻辑删除的Servant-->
+    <!-- 搜素所有未逻辑删除的parkingSpace-->
     <select id="listAll" resultMap="parkingSpaceMap">
         select
         <include refid="base_column" />
@@ -33,17 +29,17 @@
         parking_space
         where
         id=#{id} and
-        status="满"
+        is_enable = 0;
     </select>
 
 
     <!-- 新增 ParkingSpace  -->
     <insert id="insert" parameterType="ParkingSpace">
         insert into
-        parking_space (space_number,car_number,status,start_time,end_time,cost)
+        parking_space (status,is_enable)
         values
         (
-        #{spaceNumber},#{carNumber}, #{status}, #{startTime}, #{endTime}, #{cost}
+        #{status},#{isEnable}
         )
         <selectKey resultType="long" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
@@ -59,22 +55,49 @@
         <where>
             1 = 1
 
+            <if test="id != null" >
+                and id like CONCAT('%',#{id},'%')
+            </if>
+
             <if test="status != null" >
                 and status like CONCAT('%',#{status},'%')
             </if>
 
-            <if test="cost != null" >
-                and cost like CONCAT('%',#{cost},'%')
+            <if test="isEnable != null" >
+                and is_enable like CONCAT('%',#{isEnable},'%')
             </if>
 
-            <if test="startTime != '' and startTime != null " >
-                and start_time &gt; #{startTime}
-            </if>
-
-            <if test="endTime != '' and endTime != null" >
-                and end_time &lt; #{endTime}
-            </if>
         </where>
     </select>
+
+    <!-- 获取 ParkingSpace 数量 -->
+    <select id="getParkInfoAmount" parameterType="java.lang.String" resultType="java.util.Map">
+        select
+        count(*) "parkAmount"
+        from
+        parking_space
+        where
+        status = #{0}
+    </select>
+
+    <!-- 获取 ParkingSpace 信息 -->
+    <select id="getParkInfo" parameterType="java.lang.String" resultMap="parkingSpaceMap">
+        select
+        *
+        from
+        parking_space
+        where
+        status = #{0}
+    </select>
+
+    <!-- 更新 ParkingSpace  -->
+    <update id="update" parameterType="ParkingSpace">
+        update
+        parking_space
+        set
+        status = #{status}
+        where
+        id = #{id}
+    </update>
 
 </mapper>

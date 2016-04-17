@@ -7,6 +7,8 @@
        <typeAliases>
            <typeAlias alias="Servant" type="com.test.model.Servant"/>
            <typeAlias alias="ParkingSpace" type="com.test.model.ParkingSpace"/>
+           <typeAlias alias="Reserve" type="com.test.model.Reserve"/>
+           <typeAlias alias="PersonInfo" type="com.test.model.PersonInfo"/>
        </typeAliases>
 
 </configuration>

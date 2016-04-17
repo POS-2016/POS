@@ -3,7 +3,7 @@ package com.test.vo.searcher;
 import com.test.model.ParkingSpace;
 import com.test.vo.Page;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by XinLian on 2016/3/14.
@@ -14,17 +14,16 @@ public class ParkingSpaceManagePageSearcher extends Page<ParkingSpace> {
         super();
     }
 
-    public ParkingSpaceManagePageSearcher(String status,double cost) {
+    public ParkingSpaceManagePageSearcher(int id,String status,int isEnable) {
         super();
+        this.id = id;
         this.status = status;
-        this.cost = cost;
+        this.isEnable = isEnable;
     }
 
+    private Integer id;
     private String status;
-    private Double cost;
-    private String startTime;
-    private String endTime;
-    private String date;
+    private int isEnable;
 
     public String getStatus() {
         return status;
@@ -34,38 +33,19 @@ public class ParkingSpaceManagePageSearcher extends Page<ParkingSpace> {
         this.status = status;
     }
 
-    public Double getCost() {
-        return cost;
+    public int getIsEnable() {
+        return isEnable;
     }
 
-    public void setCost(Double cost) {
-        this.cost = cost;
+    public void setIsEnable(int isEnable) {
+        this.isEnable = isEnable;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public Integer getId() {
+        return id;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getDate() {
-        if(this.startTime == null || this.startTime.equals(""))
-            return date;
-        else
-            return this.startTime + "~" + this.endTime;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
