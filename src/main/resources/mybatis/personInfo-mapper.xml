@@ -75,6 +75,16 @@
         username = #{username}
     </select>
 
+    <!-- 根据手机获得用户信息 -->
+    <select id="getPersonInfoByPhone" resultMap="personInfoMap">
+        select
+        <include refid="base_column" />
+        from
+        person_info
+        where
+        phone = #{phone}
+    </select>
+
     <!-- 根据用户Id获取历史订单列表 -->
     <select id="getPersonInfoByToken"  resultMap="personInfoMap">
         select

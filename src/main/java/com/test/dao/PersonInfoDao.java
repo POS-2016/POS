@@ -22,4 +22,12 @@ public interface PersonInfoDao extends GenericDao<PersonInfo,Long>{
      * @return
      */
     PersonInfo getPersonInfoByToken(String token);
+
+    /**
+     * 根据手机查找用户
+     * @param phone
+     * @return
+     */
+    PersonInfo getPersonInfoByPhone(String phone);
+
 }
