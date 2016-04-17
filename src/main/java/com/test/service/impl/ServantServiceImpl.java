@@ -3,7 +3,9 @@ package com.test.service.impl;
 import com.test.dao.ServantDao;
 import com.test.model.Servant;
 import com.test.service.ServantService;
+import com.test.vo.Page;
 import com.test.vo.PasswordEncoder;
+import com.test.vo.searcher.ServantManagePageSearcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +24,6 @@ public class ServantServiceImpl extends GenericServiceImpl<Servant, Long> implem
         this.servantDao = servantDao;
     }
 
-    /**
-     * 新增账号
-     * @param servant
-     * @return
-     */
     @Override
     public long insertServant(Servant servant) {
         servant.setStatus(1);
@@ -35,24 +32,20 @@ public class ServantServiceImpl extends GenericServiceImpl<Servant, Long> implem
         return servant.getId();
     }
 
-    /**
-     * 更新密码||删除账号
-     * @param servant
-     * @return
-     */
     @Override
     public int updateServant(Servant servant) {
         return servantDao.update(servant);
     }
 
-    /**
-     * 根据用户名搜索账号
-     * @param servantUsername
-     * @return
-     */
     @Override
     public Servant getServantByUsername(String servantUsername) {
         return servantDao.getServantByUsername(servantUsername);
     }
 
+    @Override
+    public Page<Servant> searchServant(ServantManagePageSearcher servantManagePageSearcher) {
+        servantManagePageSearcher.setPageSize(10);
+        servantManagePageSearcher.setResult(servantDao.searchPage(servantManagePageSearcher));
+        return servantManagePageSearcher;
+    }
 }

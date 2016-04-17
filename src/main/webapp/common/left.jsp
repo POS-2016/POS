@@ -42,225 +42,33 @@
   <ul class="nav nav-list">
     <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 停车位管理 </span> <b class="arrow icon-angle-down"></b> </a>
       <ul class="submenu">
-        <li> <a href="/w/parkingSpace/manage"> <i class="icon-double-angle-right"></i> 添加停车位 </a> </li>
         <li> <a href="/w/parkingSpace/list"> <i class="icon-double-angle-right"></i> 停车位查询 </a> </li>
+        <li> <a href="/w/parkingSpace/manage"> <i class="icon-double-angle-right"></i> 停车位新增 </a> </li>
       </ul>
     </li>
 
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 交易管理 </span> <b class="arrow icon-angle-down"></b> </a>
+    <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 订单管理 </span> <b class="arrow icon-angle-down"></b> </a>
       <ul class="submenu">
-        <li> <a href="/w/parkingSpace/manage"> <i class="icon-double-angle-right"></i> 交易查询 </a> </li>
+        <li> <a href="/w/reserve/list"> <i class="icon-double-angle-right"></i> 订单查询 </a> </li>
+      </ul>
+    </li>
+
+    <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow icon-angle-down"></b> </a>
+      <ul class="submenu">
+        <li> <a href="/w/personInfo/list"> <i class="icon-double-angle-right"></i> 用户查询 </a> </li>
       </ul>
     </li>
 
     <c:choose>
-      <c:when test="${user.username == 'admin'}">
-    <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow icon-angle-down"></b> </a>
+      <c:when test="${user.username != 'admin'}">
+    <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 账号管理 </span> <b class="arrow icon-angle-down"></b> </a>
       <ul class="submenu">
-        <li> <a href="/w/parkingSpace/manage"> <i class="icon-double-angle-right"></i> 编辑用户 </a> </li>
-        <li> <a href="/w/parkingSpace/list"> <i class="icon-double-angle-right"></i> 用户查询</a> </li>
+        <li> <a href="${ctx}/w/servant/list"> <i class="icon-double-angle-right"></i> 账号查询</a> </li>
+        <li> <a href="${ctx}/w/servant/manage"> <i class="icon-double-angle-right"></i> 账号新增 </a> </li>
       </ul>
     </li>
       </c:when>
     </c:choose>
-
-    <li>
-      <a href="#" class="dropdown-toggle">
-        <i class="icon-file-alt"></i>
-
-								<span class="menu-text">
-									其他页面
-									<span class="badge badge-primary ">5</span>
-								</span>
-
-        <b class="arrow icon-angle-down"></b>
-      </a>
-
-      <ul class="submenu">
-        <li>
-          <a href="faq.html">
-            <i class="icon-double-angle-right"></i>
-            帮助
-          </a>
-        </li>
-
-        <li>
-          <a href="error-404.html">
-            <i class="icon-double-angle-right"></i>
-            404错误页面
-          </a>
-        </li>
-
-        <li>
-          <a href="error-500.html">
-            <i class="icon-double-angle-right"></i>
-            500错误页面
-          </a>
-        </li>
-
-        <li>
-          <a href="grid.html">
-            <i class="icon-double-angle-right"></i>
-            网格
-          </a>
-        </li>
-
-        <li>
-          <a href="blank.html">
-            <i class="icon-double-angle-right"></i>
-            空白页面
-          </a>
-        </li>
-      </ul>
-    </li>
-
-    <li>
-      <a href="#" class="dropdown-toggle">
-        <i class="icon-file-alt"></i>
-
-								<span class="menu-text">
-									其他页面
-									<span class="badge badge-primary ">5</span>
-								</span>
-
-        <b class="arrow icon-angle-down"></b>
-      </a>
-
-      <ul class="submenu">
-        <li>
-          <a href="faq.html">
-            <i class="icon-double-angle-right"></i>
-            帮助
-          </a>
-        </li>
-
-        <li>
-          <a href="error-404.html">
-            <i class="icon-double-angle-right"></i>
-            404错误页面
-          </a>
-        </li>
-
-        <li>
-          <a href="error-500.html">
-            <i class="icon-double-angle-right"></i>
-            500错误页面
-          </a>
-        </li>
-
-        <li>
-          <a href="grid.html">
-            <i class="icon-double-angle-right"></i>
-            网格
-          </a>
-        </li>
-
-        <li>
-          <a href="blank.html">
-            <i class="icon-double-angle-right"></i>
-            空白页面
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#" class="dropdown-toggle">
-        <i class="icon-file-alt"></i>
-
-								<span class="menu-text">
-									其他页面
-									<span class="badge badge-primary ">5</span>
-								</span>
-
-        <b class="arrow icon-angle-down"></b>
-      </a>
-
-      <ul class="submenu">
-        <li>
-          <a href="faq.html">
-            <i class="icon-double-angle-right"></i>
-            帮助
-          </a>
-        </li>
-
-        <li>
-          <a href="error-404.html">
-            <i class="icon-double-angle-right"></i>
-            404错误页面
-          </a>
-        </li>
-
-        <li>
-          <a href="error-500.html">
-            <i class="icon-double-angle-right"></i>
-            500错误页面
-          </a>
-        </li>
-
-        <li>
-          <a href="grid.html">
-            <i class="icon-double-angle-right"></i>
-            网格
-          </a>
-        </li>
-
-        <li>
-          <a href="blank.html">
-            <i class="icon-double-angle-right"></i>
-            空白页面
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#" class="dropdown-toggle">
-        <i class="icon-file-alt"></i>
-
-								<span class="menu-text">
-									其他页面
-									<span class="badge badge-primary ">5</span>
-								</span>
-
-        <b class="arrow icon-angle-down"></b>
-      </a>
-
-      <ul class="submenu">
-        <li>
-          <a href="faq.html">
-            <i class="icon-double-angle-right"></i>
-            帮助
-          </a>
-        </li>
-
-        <li>
-          <a href="error-404.html">
-            <i class="icon-double-angle-right"></i>
-            404错误页面
-          </a>
-        </li>
-
-        <li>
-          <a href="error-500.html">
-            <i class="icon-double-angle-right"></i>
-            500错误页面
-          </a>
-        </li>
-
-        <li>
-          <a href="grid.html">
-            <i class="icon-double-angle-right"></i>
-            网格
-          </a>
-        </li>
-
-        <li>
-          <a href="blank.html">
-            <i class="icon-double-angle-right"></i>
-            空白页面
-          </a>
-        </li>
-      </ul>
-    </li>
   </ul>
 
   <div class="sidebar-collapse" id="sidebar-collapse">

@@ -7,11 +7,12 @@
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="status" column="status"/>
+        <result property="authority" column="authority"/>
     </resultMap>
 
     <!--把需要查询的字段写成公用列-->
     <sql id="base_column">
-        id,username,password,status
+        id,username,password,status,authority
     </sql>
 
     <!-- 搜素所有未逻辑删除的Servant-->
@@ -49,12 +50,12 @@
     <!-- 新增 Servant  -->
     <insert id="insert" parameterType="Servant">
         insert into
-        servant (username,password,1)
+        servant (username,password,1,authority)
         values
         (
-        #{username},#{password}, #{status}
+        #{username},#{password}, #{status},#{authority}
         )
-        <selectKey resultType="long" keyProperty="id" order="AFTER" >
+        <selectKey resultType="int" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
@@ -64,8 +65,11 @@
         update
         servant
         set
-        password = #{password},
-        status = #{status}
+        <if test="password != null and password != ''">
+            password = #{password},
+        </if>
+        status = #{status},
+        authority = #{authority}
         where id = #{id}
     </update>
 
@@ -74,6 +78,31 @@
         select * from servant where username=#{username}
     </select>
 
+    <!--搜素查询 Servant 当前页结果列表-->
+    <select id="searchPage" parameterType="com.test.vo.searcher.ServantManagePageSearcher"  resultMap="servantMap">
+        select
+        <include refid="base_column" />
+        from
+        servant
+        <where>
+            1 = 1
 
+            <if test="id != null" >
+                and id like CONCAT('%',#{id},'%')
+            </if>
 
+            <if test="status != null and status != '-1'" >
+                and status like CONCAT('%',#{status},'%')
+            </if>
+
+            <if test="username != null" >
+                and username like CONCAT('%',#{username},'%')
+            </if>
+
+            <if test="authority != null and authority != -1" >
+                and authority like CONCAT('%',#{authority},'%')
+            </if>
+
+        </where>
+    </select>
 </mapper>

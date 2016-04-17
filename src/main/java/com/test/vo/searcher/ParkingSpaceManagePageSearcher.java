@@ -24,6 +24,15 @@ public class ParkingSpaceManagePageSearcher extends Page<ParkingSpace> {
     private Integer id;
     private String status;
     private int isEnable;
+    private Long ppName;
+
+    public Long getPpName() {
+        return ppName;
+    }
+
+    public void setPpName(Long ppName) {
+        this.ppName = ppName;
+    }
 
     public String getStatus() {
         return status;

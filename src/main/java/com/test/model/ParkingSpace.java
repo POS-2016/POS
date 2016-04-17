@@ -11,8 +11,8 @@ public class ParkingSpace implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Integer id;
+    private Long ppName;
     private String status;
-    private int isEnable;
 
     public Integer getId() {
         return id;
@@ -30,11 +30,11 @@ public class ParkingSpace implements Serializable {
         this.status = status;
     }
 
-    public int getIsEnable() {
-        return isEnable;
+    public Long getPpName() {
+        return ppName;
     }
 
-    public void setIsEnable(int isEnable) {
-        this.isEnable = isEnable;
+    public void setPpName(Long ppName) {
+        this.ppName = ppName;
     }
 }
