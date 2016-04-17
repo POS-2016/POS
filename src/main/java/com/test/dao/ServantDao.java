@@ -14,4 +14,9 @@ public interface ServantDao extends GenericDao<Servant,Long>{
      * @return
      */
     Servant getServantByUsername(final String servantUsername);
+
+    /*
+    *
+    *
+    * */
 }

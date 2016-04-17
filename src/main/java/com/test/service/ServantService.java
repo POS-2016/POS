@@ -31,4 +31,7 @@ public interface ServantService extends GenericService<Servant, Long> {
      */
     Servant getServantByUsername(final String servantUsername);
 
+
+
+
 }

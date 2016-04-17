@@ -74,4 +74,6 @@
         select * from servant where username=#{username}
     </select>
 
+
+
 </mapper>
