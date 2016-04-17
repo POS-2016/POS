@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f2643ab-3e84-4dc3-b372-0860a53b83dd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_1.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__joda_time_joda_time_2_9_3.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/test_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/test_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.iml" afterPath="$PROJECT_DIR$/test.iml" />
     </list>
     <ignored path="test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +63,8 @@
       <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/test/controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5704698">
-              <caret line="140" column="19" selection-start-line="140" selection-start-column="19" selection-end-line="140" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.53691274">
+              <caret line="139" column="69" selection-start-line="139" selection-start-column="69" selection-end-line="139" selection-end-column="69" />
               <folding>
                 <element signature="e#3694#3710#0" expanded="true" />
                 <element signature="e#4973#4989#0" expanded="true" />
@@ -1612,7 +1617,7 @@
       <workItem from="1460546018429" duration="4476000" />
       <workItem from="1460600239606" duration="5787000" />
       <workItem from="1460628332727" duration="9463000" />
-      <workItem from="1460876591335" duration="13803000" />
+      <workItem from="1460876591335" duration="13937000" />
     </task>
     <task id="LOCAL-00001" summary="搜索框布局&#10;简单的权限管理&#10;新增数据库表">
       <created>1459236387719</created>
@@ -1656,11 +1661,17 @@
       <option name="project" value="LOCAL" />
       <updated>1460897626296</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="增加登录和注册接口">
+      <created>1460898542906</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1460898542906</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311903000" />
+    <option name="totallyTimeSpent" value="312037000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1990,14 +2001,7 @@
         <state vertical-scroll-proportion="0.46875">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#205#206#0" expanded="true" />
-            <element signature="e#243#244#0" expanded="true" />
-            <element signature="e#273#274#0" expanded="true" />
-            <element signature="e#306#307#0" expanded="true" />
-            <element signature="e#335#336#0" expanded="true" />
-            <element signature="e#379#380#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
+            <element signature="e#230#231#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2168,8 +2172,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/test/controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5704698">
-          <caret line="140" column="19" selection-start-line="140" selection-start-column="19" selection-end-line="140" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.53691274">
+          <caret line="139" column="69" selection-start-line="139" selection-start-column="69" selection-end-line="139" selection-end-column="69" />
           <folding>
             <element signature="e#3694#3710#0" expanded="true" />
             <element signature="e#4973#4989#0" expanded="true" />
