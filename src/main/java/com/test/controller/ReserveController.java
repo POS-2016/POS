@@ -87,14 +87,10 @@ public class ReserveController extends BaseController {
         Reserve reserve = new Reserve();
         reserve.setUserId(personInfo.getUserId());
         reserve.setOrderTime(time);
-        reserve.setSpaceId(Integer.valueOf(parks));
+        reserve.setSpaceId(Long.valueOf(parks));
         reserve.setFee(fee);
 
         reserveService.insertReserve(reserve);
-
-        ParkingSpace parkingSpace = parkingSpaceService.getNoDeletedObj(Long.valueOf(parks));
-        parkingSpace.setStatus("已预订");
-        parkingSpaceService.updateParkingSpace(parkingSpace);
 
         Map map = new HashMap();
         map.put("status",0);
@@ -146,13 +142,34 @@ public class ReserveController extends BaseController {
         String token = request.getParameter("token");
 
         Reserve reserve = reserveService.getNoDeletedObj(id);
-        reserve.setStatus(1);
-
-        reserveService.updateReserve(reserve);
+        reserveService.cancelReserve(reserve);
 
         Map map = new HashMap();
         map.put("status",0);
         map.put("msg","取消预约成功");
+
+        String result = JSON.toJSONString(map);
+
+        return result;
+    }
+
+    /**
+     * 核对订单
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "w/checkReserve",method = {RequestMethod.GET,RequestMethod.POST})
+    public @ResponseBody
+    String checkReserve(HttpServletRequest request){
+        long id = Long.valueOf(request.getParameter("id"));
+        String token = request.getParameter("token");
+
+        Reserve reserve = reserveService.getNoDeletedObj(id);
+        reserveService.checkReserve(reserve);
+
+        Map map = new HashMap();
+        map.put("status",0);
+        map.put("msg","成功");
 
         String result = JSON.toJSONString(map);
 

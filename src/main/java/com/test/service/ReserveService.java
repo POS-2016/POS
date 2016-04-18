@@ -48,4 +48,23 @@ public interface ReserveService extends GenericService<Reserve, Long>  {
      * @return
      */
     Page<Reserve> searchReserve(ReserveManagePageSearcher reserveManagePageSearcher);
+
+    /**
+     * 处理过期订单
+     */
+    void scanOverdueReserve();
+
+    /**
+     * 取消订单
+     * @param reserve
+     * @return
+     */
+    int cancelReserve(Reserve reserve);
+
+    /**
+     * 核对订单
+     * @param reserve
+     * @return
+     */
+    int checkReserve(Reserve reserve);
 }

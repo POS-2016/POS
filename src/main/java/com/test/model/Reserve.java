@@ -13,7 +13,7 @@ public class Reserve implements Serializable{
     private Integer id;
     private Long orderTime;
     private int userId;
-    private Integer spaceId;
+    private Long spaceId;
     private Double fee;
     private String time;
     private int status;
@@ -42,11 +42,11 @@ public class Reserve implements Serializable{
         this.userId = userId;
     }
 
-    public Integer getSpaceId() {
+    public Long getSpaceId() {
         return spaceId;
     }
 
-    public void setSpaceId(Integer spaceId) {
+    public void setSpaceId(Long spaceId) {
         this.spaceId = spaceId;
     }
 

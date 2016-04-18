@@ -1,6 +1,7 @@
 package com.test.dao;
 
 import com.test.model.Reserve;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,4 +25,11 @@ public interface ReserveDao extends GenericDao<Reserve,Long> {
      * @return
      */
     List<Reserve> getHistoricalReserveById(int userId, Long date);
+
+    /**
+     * 获取过期订单
+     * @param currentTime
+     * @return
+     */
+    List<Reserve> getOverdueReserve(@Param("currentTime") long currentTime);
 }

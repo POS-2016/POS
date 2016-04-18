@@ -14,14 +14,14 @@ public class ParkingSpaceManagePageSearcher extends Page<ParkingSpace> {
         super();
     }
 
-    public ParkingSpaceManagePageSearcher(int id,String status,int isEnable) {
+    public ParkingSpaceManagePageSearcher(Long id,String status,int isEnable) {
         super();
         this.id = id;
         this.status = status;
         this.isEnable = isEnable;
     }
 
-    private Integer id;
+    private Long id;
     private String status;
     private int isEnable;
     private Long ppName;
@@ -50,11 +50,11 @@ public class ParkingSpaceManagePageSearcher extends Page<ParkingSpace> {
         this.isEnable = isEnable;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

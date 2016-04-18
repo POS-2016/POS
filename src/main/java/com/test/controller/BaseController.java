@@ -82,21 +82,21 @@ public class BaseController implements ServletContextAware {
         this.servletContext = servletContext;
     }
 
-    //以json格式返回
-    protected void sendResponseAsJson(HttpServletResponse response,
-                                      String data) {
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json; charset=utf-8");
-        PrintWriter out = null;
-        try {
-            out = response.getWriter();
-            out.append(data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (out != null) {
-                out.close();
-            }
-        }
-    }
+//    //以json格式返回
+//    protected void sendResponseAsJson(HttpServletResponse response,
+//                                      String data) {
+//        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("application/json; charset=utf-8");
+//        PrintWriter out = null;
+//        try {
+//            out = response.getWriter();
+//            out.append(data);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (out != null) {
+//                out.close();
+//            }
+//        }
+//    }
 }
