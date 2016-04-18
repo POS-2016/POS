@@ -62,7 +62,7 @@
         phone = #{phone},
         gander = #{gander}
         where
-        userId = #{user_id}
+        user_id = #{userId}
     </update>
 
     <!-- 根据用户名获取用户信息 -->
