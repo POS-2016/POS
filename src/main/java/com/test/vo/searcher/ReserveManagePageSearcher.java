@@ -1,6 +1,5 @@
 package com.test.vo.searcher;
 
-import com.test.model.ParkingSpace;
 import com.test.model.Reserve;
 import com.test.vo.Page;
 
@@ -17,6 +16,7 @@ public class ReserveManagePageSearcher extends Page<Reserve> {
         super();
     }
 
+    private Integer id;
     private String date;
     private String startDate;
     private String endDate;
@@ -24,6 +24,14 @@ public class ReserveManagePageSearcher extends Page<Reserve> {
     private String endTime;
     private Long startTimeStamp;
     private Long endTimeStamp;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getDate() {
         if(this.startTime == null || this.startTime.equals(""))

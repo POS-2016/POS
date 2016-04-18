@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-sm-9 no-padding-left">
                                         <form:input id="id" path="id" class="form-control search-query"
-                                                    placeholder="请输入数值" value="${parkingSpaceManagePageSearcher.id}"/>
+                                                    placeholder="请输入数值" value="${parkingSpaceManagePageSearcher.ppName}"/>
                                     </div>
                                 </div>
 
@@ -65,8 +65,9 @@
                                     </div>
                                     <div class="col-sm-9 no-padding-left">
                                         <select id="status" name="status">
+                                            <option >全部</option>
                                             <c:forEach items="${statusList}" var="statusList">
-                                                <option value="${statusList.get("key")}" <c:if test="${statusList.get('key') == parkingSpaceManagePageSearcher.status}"> selected </c:if> >${statusList.get("key")}</option>
+                                                <option value="${statusList.get("status")}" <c:if test="${statusList.get('status') == parkingSpaceManagePageSearcher.status}"> selected </c:if> >${statusList.get("status")}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -106,10 +107,10 @@
                             <tbody>
                             <c:forEach items="${pageObj.result}" var="parkingSpace">
                                 <tr>
-                                    <td>${parkingSpace.id}</td>
+                                    <td>${parkingSpace.ppName}</td>
                                     <td>${parkingSpace.status}</td>
                                     <td>
-                                        <a href="${ctx}/parkingSpaceManage/parkingSpace/manage?servantRoleID=${parkingSpace.id}">编辑</a>
+                                        <a href="${ctx}/w/parkingSpace/manage?id=${parkingSpace.id}">编辑</a>
                                     </td>
                                 </tr>
                             </c:forEach>

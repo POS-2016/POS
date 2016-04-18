@@ -2,10 +2,10 @@
 <%@ include file="/common/taglibs.jsp" %>
 
 <head>
-    <title>停车位管理</title>
+    <title>账户管理</title>
 </head>
 <body>
-<form:form modelAttribute="parkingSpace" action="${ctx}/w/parkingSpace/save" id="pageForm" method="post" autocomplete="off">
+<form:form modelAttribute="servant" action="${ctx}/w/servant/save" id="pageForm" method="post" autocomplete="off">
     <form:hidden path="id"/>
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
@@ -28,11 +28,11 @@
                 <div class="widget-header widget-header-small">
                     <h5 class="lighter">
                         <c:choose>
-                            <c:when test="${parkingSpace.id == null}">
-                                添加停车位
+                            <c:when test="${servant.id == null}">
+                                添加账户
                             </c:when>
                             <c:otherwise>
-                                编辑停车位
+                                编辑账户
                             </c:otherwise>
                         </c:choose>
                     </h5>
@@ -43,10 +43,34 @@
                         <div class="form-search">
                             <div class="row">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" for="ppName"> 停车位号 </label>
+                                    <label class="col-sm-3 control-label no-padding-right" for="username"> 用户名称 </label>
                                     <div class="col-sm-9">
                                         <span class="input-group-btn">
-                                            <form:input id="ppName" path="ppName" type="text" value="${parkingSpace.ppName}" class="col-xs-10 col-sm-5" readonly="true"/>
+                                            <form:input id="username" path="username" type="text" value="${servant.username}" class="col-xs-10 col-sm-5"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="confirmPassword"> 用户名称 </label>
+                                    <div class="col-sm-9">
+                                        <span class="input-group-btn">
+                                            <input id="confirmPassword" name="confirmPassword" type="password" validata-options="validType:'Require|Repeat',to:'password',msg:'不能为空|两次输入的密码不一致'" class="col-xs-10 col-sm-5"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="username"> 用户名称 </label>
+                                    <div class="col-sm-9">
+                                        <span class="input-group-btn">
+                                            <input id="password" name="password" type="password" validata-options="validType:'Require|SafeString',msg:'不能为空|密码不符合安全规则(6-20位数字、字母或常用符号的组合密码)'" class="col-xs-10 col-sm-5"/>
                                         </span>
                                     </div>
                                 </div>

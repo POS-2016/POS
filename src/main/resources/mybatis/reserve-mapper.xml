@@ -103,6 +103,10 @@
                 and order_time &lt; #{endTimeStamp}
             </if>
 
+            <if test="id != '' and id != null" >
+                and id = #{id}
+            </if>
+
         </where>
     </select>
 

@@ -26,6 +26,7 @@
 
     <script src="${ctx}/static/js/jquery.min.js"></script>
     <script src="${ctx}/static/js/ace-extra.min.js"></script>
+    <script src="${ctx}/static/js/vdform2.js"></script>
     <decorator:head/>
     <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -37,7 +38,11 @@
             min-height: 100%;
             padding: 0;
         }
-
+        .form-group {
+            padding-top: 4px;
+            margin-bottom: 4px;
+            text-align: right;
+        }
     </style>
 </head>
 <body>

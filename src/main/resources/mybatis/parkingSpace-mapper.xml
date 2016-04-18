@@ -5,12 +5,12 @@
     <resultMap id="parkingSpaceMap" type="ParkingSpace">
         <id property="id" column="id"/>
         <result property="status" column="status"/>
-        <result property="isEnable" column="is_enable"/>
+        <result property="ppName" column="pp_name"/>
     </resultMap>
 
     <!--把需要查询的字段写成公用列-->
     <sql id="base_column">
-        id,status,is_enable
+        id,status,pp_name
     </sql>
 
     <!-- 搜素所有未逻辑删除的parkingSpace-->
@@ -29,24 +29,24 @@
         parking_space
         where
         id=#{id} and
-        is_enable = 0;
+        pp_name != "禁用";
     </select>
 
 
     <!-- 新增 ParkingSpace  -->
     <insert id="insert" parameterType="ParkingSpace">
         insert into
-        parking_space (status,is_enable)
+        parking_space (status,pp_name)
         values
         (
-        #{status},#{isEnable}
+        #{status},#{ppName}
         )
-        <selectKey resultType="long" keyProperty="id" order="AFTER" >
+        <selectKey resultType="Integer" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
 
-    <!--搜素查询 Servant 当前页结果列表-->
+    <!--搜素查询 ParkingSpace 当前页结果列表-->
     <select id="searchPage" parameterType="com.test.vo.searcher.ParkingSpaceManagePageSearcher"  resultMap="parkingSpaceMap">
         select
         <include refid="base_column" />
@@ -59,12 +59,12 @@
                 and id like CONCAT('%',#{id},'%')
             </if>
 
-            <if test="status != null" >
+            <if test="status != null and status != '全部'" >
                 and status like CONCAT('%',#{status},'%')
             </if>
 
-            <if test="isEnable != null" >
-                and is_enable like CONCAT('%',#{isEnable},'%')
+            <if test="ppName != null" >
+                and pp_name like CONCAT('%',#{ppName},'%')
             </if>
 
         </where>
@@ -77,7 +77,10 @@
         from
         parking_space
         where
-        status = #{0}
+        1 = 1
+        <if test="status != null">
+            AND  status = #{status};
+        </if>
     </select>
 
     <!-- 获取 ParkingSpace 信息 -->
@@ -95,9 +98,9 @@
         update
         parking_space
         set
-        status = #{status}
+        status = #{status},
+        pp_name = #{ppName}
         where
         id = #{id}
     </update>
-
 </mapper>

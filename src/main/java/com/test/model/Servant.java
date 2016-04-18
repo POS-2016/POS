@@ -12,6 +12,15 @@ public class Servant implements Serializable {
     private String username;
     private String password;
     private int status;
+    private int authority;
+
+    public int getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(int authority) {
+        this.authority = authority;
+    }
 
     public String getPassword() {
         return password;

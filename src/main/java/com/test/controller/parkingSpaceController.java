@@ -6,6 +6,7 @@ import com.test.dao.ParkingSpaceDao;
 import com.test.model.ParkingSpace;
 import com.test.model.ParkingSpaceStatus;
 import com.test.service.ParkingSpaceService;
+import com.test.vo.SelectValue;
 import com.test.vo.searcher.ParkingSpaceManagePageSearcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,19 +41,7 @@ public class parkingSpaceController extends BaseController{
     @RequestMapping(value = {"/w/parkingSpace/list"},method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView list(@ModelAttribute(value="parkingSpaceManagePageSearcher") ParkingSpaceManagePageSearcher parkingSpaceManagePageSearcher) {
 
-        Map map1 = new HashMap();
-        Map map2 = new HashMap();
-        Map map3 = new HashMap();
-
-        map1.put("key","可用");
-        map2.put("key","已预定");
-        map3.put("key","正在使用");
-
-        List<Map> statusList = new ArrayList<Map>();
-
-        statusList.add(map1);
-        statusList.add(map2);
-        statusList.add(map3);
+        List<Map> statusList = SelectValue.getParkingSpaceStausMap();
 
         ModelAndView modelAndView = new ModelAndView("parkingSpaceManage/parkingSpace_list");
         modelAndView.addObject("parkingSpaceManagePageSearcher",parkingSpaceManagePageSearcher)
@@ -66,13 +55,36 @@ public class parkingSpaceController extends BaseController{
      * @param requestBody
      * @throws IOException
      */
-    @RequestMapping(value = {"/w/parkingSpace/save"},method = {RequestMethod.POST})
+    @RequestMapping(value = {"/w/parkingSpace/save1"},method = {RequestMethod.POST})
     public
-    void saveParkingSpace(@RequestBody String requestBody) throws IOException {
+    void saveParkingSpace1(@RequestBody String requestBody) throws IOException {
 
         ParkingSpace parkingSpace = JSON.parseObject(requestBody, ParkingSpace.class);
 
         parkingSpaceService.insertParkingSpace(parkingSpace);
+    }
+
+    /**
+     * 保存停车位
+     * @param parkingSpace
+     * @throws IOException
+     */
+    @RequestMapping(value = {"/w/parkingSpace/save"},method = {RequestMethod.POST})
+    public
+    String saveParkingSpace(@ModelAttribute("parkingSpace") ParkingSpace parkingSpace, HttpServletRequest request) throws IOException {
+
+        Integer id = parkingSpace.getId();
+        boolean isAdd = (id == null);
+
+        if (isAdd) {
+            parkingSpaceService.insertParkingSpace(parkingSpace);
+            saveMessage(request, "成功新增 停车位！");
+        } else {
+            parkingSpaceService.updateParkingSpace(parkingSpace);
+            saveMessage(request, "成功修改 停车位！");
+        }
+
+        return "redirect:/w/parkingSpace/list";
     }
 
     /**
@@ -81,16 +93,20 @@ public class parkingSpaceController extends BaseController{
      */
     @RequestMapping(value = {"/w/parkingSpace/manage"},method = {RequestMethod.GET})
     public
-    ModelAndView manageParkingSpace() {
+    ModelAndView manageParkingSpace(@RequestParam(value = "id", required = false) Long id,
+                                    ParkingSpace parkingSpace) {
 
         ModelAndView modelAndView = new ModelAndView("parkingSpaceManage/parkingSpace_manage");
-        List<Map> list = new ArrayList<Map>();
-        for (int i = 0; i < 10; i++) {
-            Map map = new HashMap();
-            map.put("key",i);
-            list.add(map);
+        if(id == null) {
+            parkingSpace = new ParkingSpace();
+            Map numberMap = parkingSpaceService.getParkInfoAmount(null);
+            parkingSpace.setPpName((Long)numberMap.get("parkAmount") + 1);
+        } else {
+            parkingSpace = parkingSpaceService.getNoDeletedObj(id);
         }
-        modelAndView.addObject("list",list);
+        List<Map> list = SelectValue.getParkingSpaceStausMap();
+        modelAndView.addObject("parkingSpace",parkingSpace)
+                    .addObject("list", list);
         return modelAndView;
     }
 

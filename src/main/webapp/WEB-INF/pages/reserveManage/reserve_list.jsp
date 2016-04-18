@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="${ctx}/static/css/bootstrap-timepicker.css"/>
 </head>
 <body>
-<form:form modelAttribute="reserveManagePageSearcher" id="pageForm">
+<form:form modelAttribute="reserveManagePageSearcher" id="pageForm" method="post" autocomplete="off">
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
             <script type="text/javascript">
@@ -48,22 +48,13 @@
 
                                 <div class="col-xs-12 col-sm-1"></div>
 
-                                <%--<div class="col-xs-12 col-sm-3">--%>
-                                    <%--<div class="col-sm-3 no-padding-right" style="height: 34px; padding-top: 5px;">--%>
-                                        <%--<label class="control-label no-padding-right" for="username"> 用户查询 </label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="col-sm-9 no-padding-left">--%>
-                                        <%--<form:input id="username" path="username" class="form-control search-query"--%>
-                                                    <%--placeholder="请输入用户" value="${personInfoManagePageSearcher.username}"/>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-
                                 <div class="col-xs-12 col-sm-3">
-                                    <div class="input-group bootstrap-timepicker">
-                                        <input id="timepicker" type="text" class="form-control" />
-                                        <span class="input-group-addon">
-                                            <i class="icon-time bigger-110"></i>
-                                        </span>
+                                    <div class="col-sm-3 no-padding-right" style="height: 34px; padding-top: 5px;">
+                                        <label class="control-label no-padding-right" for="id"> 订单查询 </label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding-left">
+                                        <form:input id="id" path="id" class="form-control search-query"
+                                                    placeholder="请输入订单编号" value="${reserveManagePageSearcher.id}" validata-options="validType:'Ajax',url:'${ctx}/w/ajax_number',method:'post',msg:'只能输入数字'"/>
                                     </div>
                                 </div>
 
@@ -111,7 +102,7 @@
                                     <td>${reserve.spaceId}</td>
                                     <td>${reserve.fee}</td>
                                     <td>
-                                        <a href="${ctx}/parkingSpaceManage/parkingSpace/manage?servantRoleID=${parkingSpace.id}">编辑</a>
+                                        <a href="${ctx}/parkingSpaceManage/parkingSpace/manage?servantRoleID=${reserve.id}">编辑</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -164,6 +155,8 @@
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
+
+        $("#pageForm").checkForm();
 
     })
 </script>
