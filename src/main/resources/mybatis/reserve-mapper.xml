@@ -38,10 +38,10 @@
     <!-- 新增 Reserve  -->
     <insert id="insert" parameterType="Reserve">
         insert into
-        reserve (space_id,user_id,order_time,fee)
+        reserve (space_id,user_id,order_time,fee,status)
         values
         (
-        #{spaceId},#{userId}, #{orderTime}, #{fee}
+        #{spaceId},#{userId}, #{orderTime}, #{fee},#{status}
         )
         <selectKey resultType="int" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
@@ -110,4 +110,13 @@
         </where>
     </select>
 
+    <!-- 处理过期 Reserve  -->
+    <select id="getOverdueReserve" parameterType="long" resultMap="reserveMap">
+        select
+        <include refid="base_column" />
+        from
+        reserve
+        where
+        order_time &lt; #{currentTime}
+    </select>
 </mapper>

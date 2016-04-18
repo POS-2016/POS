@@ -25,7 +25,7 @@ import java.util.Map;
  * Created by XinLian on 2016/3/13.
  */
 @Controller("parkingSpaceManageController")
-public class parkingSpaceController extends BaseController{
+public class ParkingSpaceController extends BaseController{
 
     @Autowired
     ParkingSpaceService parkingSpaceService;
@@ -73,7 +73,7 @@ public class parkingSpaceController extends BaseController{
     public
     String saveParkingSpace(@ModelAttribute("parkingSpace") ParkingSpace parkingSpace, HttpServletRequest request) throws IOException {
 
-        Integer id = parkingSpace.getId();
+        Long id = parkingSpace.getId();
         boolean isAdd = (id == null);
 
         if (isAdd) {

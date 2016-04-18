@@ -41,7 +41,7 @@
         (
         #{status},#{ppName}
         )
-        <selectKey resultType="Integer" keyProperty="id" order="AFTER" >
+        <selectKey resultType="Long" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
