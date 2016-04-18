@@ -158,7 +158,7 @@ public class ReserveController extends BaseController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "w/checkReserve",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "m/checkReserve",method = {RequestMethod.GET,RequestMethod.POST})
     public @ResponseBody
     String checkReserve(HttpServletRequest request){
         long id = Long.valueOf(request.getParameter("id"));
@@ -177,6 +177,21 @@ public class ReserveController extends BaseController {
     }
 
     /**
+     * 检测订单是否有效
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/m/reserve_avaliable",method = RequestMethod.GET)
+    public @ResponseBody
+    String avaliableReserve(HttpServletRequest request) {
+        Long reserveId = Long.valueOf(request.getParameter("id"));
+
+        String  result = reserveService.avaliableReserve(reserveId);
+
+        return result;
+    }
+
+    /**
      * 获取订单列表
      * @param reserveManagePageSearcher
      * @return
@@ -189,5 +204,4 @@ public class ReserveController extends BaseController {
                 .addObject("pageObj", reserveService.searchReserve(reserveManagePageSearcher));
         return modelAndView;
     }
-
 }

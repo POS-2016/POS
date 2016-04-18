@@ -76,7 +76,7 @@ public class ReserveServiceImpl extends GenericServiceImpl<Reserve,Long> impleme
 
         for(Reserve reserve : list) {
             Long spaceId = reserve.getSpaceId();
-            ParkingSpace parkingSpace = parkingSpaceDao.get(spaceId);
+            ParkingSpace parkingSpace = parkingSpaceDao.getNoDeletedObj(spaceId);
             parkingSpace.setStatus("可用");
             parkingSpaceDao.update(parkingSpace);
         }
@@ -86,7 +86,7 @@ public class ReserveServiceImpl extends GenericServiceImpl<Reserve,Long> impleme
     public int cancelReserve(Reserve reserve) {
 
         Long spaceId = reserve.getSpaceId();
-        ParkingSpace parkingSpace = parkingSpaceDao.get(spaceId);
+        ParkingSpace parkingSpace = parkingSpaceDao.getNoDeletedObj(spaceId);
         parkingSpace.setStatus("可用");
         parkingSpaceDao.update(parkingSpace);
         reserve.setStatus(1);
@@ -96,11 +96,24 @@ public class ReserveServiceImpl extends GenericServiceImpl<Reserve,Long> impleme
     @Override
     public int checkReserve(Reserve reserve) {
         Long spaceId = reserve.getSpaceId();
-        ParkingSpace parkingSpace = parkingSpaceDao.get(spaceId);
+        ParkingSpace parkingSpace = parkingSpaceDao.getNoDeletedObj(spaceId);
         parkingSpace.setStatus("正在使用");
         parkingSpaceDao.update(parkingSpace);
 
         reserve.setStatus(1);
         return reserveDao.update(reserve);
+    }
+
+    @Override
+    public String avaliableReserve(Long reserveId) {
+
+        Reserve reserve = reserveDao.getNoDeletedObj(reserveId);
+
+        if(reserve.getOrderTime() < System.currentTimeMillis() || reserve.getStatus() == 1) {
+
+            return "0";
+        } else {
+            return "1";
+        }
     }
 }

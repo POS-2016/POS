@@ -67,4 +67,11 @@ public interface ReserveService extends GenericService<Reserve, Long>  {
      * @return
      */
     int checkReserve(Reserve reserve);
+
+    /**
+     * 判断订单是否失效
+     * @param reserveId
+     * @return
+     */
+    String avaliableReserve(Long reserveId);
 }
