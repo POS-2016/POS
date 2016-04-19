@@ -44,13 +44,13 @@
       <ul class="submenu">
         <li> <a href="/w/parkingSpace/list"> <i class="icon-double-angle-right"></i> 停车位查询 </a> </li>
         <li> <a href="/w/parkingSpace/manage"> <i class="icon-double-angle-right"></i> 停车位新增 </a> </li>
-        <li> <a href="/w/parkingSpace/chart"> <i class="icon-double-angle-right"></i> 停车位统计 </a> </li>
       </ul>
     </li>
 
     <li> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> 订单管理 </span> <b class="arrow icon-angle-down"></b> </a>
       <ul class="submenu">
         <li> <a href="/w/reserve/list"> <i class="icon-double-angle-right"></i> 订单查询 </a> </li>
+        <li> <a href="/w/reserve/chart"> <i class="icon-double-angle-right"></i> 订单统计 </a> </li>
       </ul>
     </li>
 

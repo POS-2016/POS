@@ -6,14 +6,17 @@ import com.test.model.ParkingSpace;
 import com.test.model.Reserve;
 import com.test.service.ReserveService;
 import com.test.vo.Page;
+import com.test.vo.SelectValue;
 import com.test.vo.searcher.ReserveManagePageSearcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by XinLian on 2016/3/29.
@@ -115,5 +118,28 @@ public class ReserveServiceImpl extends GenericServiceImpl<Reserve,Long> impleme
         } else {
             return "1";
         }
+    }
+
+    @Override
+    public int addReserve(Reserve reserve) {
+        return reserveDao.insert(reserve);
+    }
+
+    @Override
+    public List<Map> countReserveByDate(String date) throws ParseException {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        List<Map> list = SelectValue.getDateTime(date);
+        List<Map> resultList = new ArrayList<Map>();
+        for(Map map : list) {
+            String start = (String)map.get("startTime");
+            String end = (String)map.get("endTime");
+            Long startTime = format.parse(start).getTime();
+            Long endTime = format.parse(end).getTime();
+
+            Map resultMap = reserveDao.countReserveByDate(startTime,endTime);
+            resultList.add(resultMap);
+        }
+        return resultList;
     }
 }

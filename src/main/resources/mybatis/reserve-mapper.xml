@@ -119,4 +119,16 @@
         where
         order_time &lt; #{currentTime}
     </select>
+
+    <!-- 根据日期统计订单 -->
+    <select id="countReserveByDate"  resultType="java.util.Map">
+        select
+        count(*) 'amount'
+        from
+        reserve
+        where
+        order_time &gt; #{startTime}
+        and
+        order_time &lt;#{endTime}
+    </select>
 </mapper>

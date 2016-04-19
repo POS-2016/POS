@@ -4,6 +4,8 @@
 <head>
     <title>停车位管理</title>
     <link rel="stylesheet" href="${ctx}/static/css/daterangepicker.css"/>
+    <link rel="stylesheet" href="${ctx}/static/css/datepicker.css" />
+    <link rel="stylesheet" href="${ctx}/static/css/bootstrap-timepicker.css" />
 </head>
 <body>
 <form:form modelAttribute="parkingSpaceManagePageSearcher" id="pageForm">
@@ -38,10 +40,7 @@
                                         <span class="input-group-addon">
                                             <i class="icon-calendar bigger-110"></i>
                                         </span>
-                                            <%--<input id="startTime"  name="startTime" type="hidden"/>--%>
-                                            <%--<input id="endTime"  name="endTime" type="hidden"/>--%>
-                                        <input path="date" class="form-control" type="text" name="date-range-picker"
-                                               id="date-range-picker"  />
+                                        <input class="form-control date-picker" id="id-date-picker" type="text" data-date-format="dd-mm-yyyy" />
                                     </div>
                                 </div>
 

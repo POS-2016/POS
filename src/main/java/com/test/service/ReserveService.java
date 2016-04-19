@@ -4,8 +4,10 @@ import com.test.model.Reserve;
 import com.test.vo.Page;
 import com.test.vo.searcher.ReserveManagePageSearcher;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by XinLian on 2016/3/29.
@@ -74,4 +76,13 @@ public interface ReserveService extends GenericService<Reserve, Long>  {
      * @return
      */
     String avaliableReserve(Long reserveId);
+
+    int addReserve(Reserve reserve);
+
+    /**
+     * 根据日期统计订单量
+     * @param date
+     * @return
+     */
+    List<Map> countReserveByDate(String date) throws ParseException;
 }

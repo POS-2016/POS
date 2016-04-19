@@ -12,10 +12,7 @@ import com.test.utils.ObjectToMap;
 import com.test.vo.searcher.ReserveManagePageSearcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -202,6 +199,48 @@ public class ReserveController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("reserveManage/reserve_list");
         modelAndView.addObject("reserveManagePageSearcher", reserveManagePageSearcher)
                 .addObject("pageObj", reserveService.searchReserve(reserveManagePageSearcher));
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/m/add_reserve",method = {RequestMethod.GET,RequestMethod.POST})
+    public @ResponseBody
+    String addReserve(HttpServletRequest request) {
+
+        String token = request.getParameter("token");
+        Double fee = Double.valueOf(request.getParameter("fee"));
+        String parks = request.getParameter("parks");
+        Long time = Long.valueOf(request.getParameter("time"));
+        Integer userId = Integer.valueOf(request.getParameter("userId"));
+
+        Reserve reserve = new Reserve();
+        reserve.setUserId(userId);
+        reserve.setOrderTime(time);
+        reserve.setSpaceId(Long.valueOf(parks));
+        reserve.setFee(fee);
+
+        reserveService.addReserve(reserve);
+
+        Map map = new HashMap();
+        map.put("status",0);
+        map.put("msg","成功");
+
+        String result = JSON.toJSONString(map);
+        return result;
+    }
+
+    @RequestMapping(value = "/w/reserve/count",method = RequestMethod.POST)
+    public @ResponseBody
+    String countRserveByDate(String date) throws ParseException {
+        List<Map> list = reserveService.countReserveByDate(date);
+
+        String result = JSON.toJSONString(list);
+
+        return result;
+    }
+
+    @RequestMapping(value = {"/w/reserve/chart"},method = {RequestMethod.GET})
+    public ModelAndView chartParkingSpace(){
+        ModelAndView modelAndView = new ModelAndView("reserveManage/reserve_charts");
         return modelAndView;
     }
 }

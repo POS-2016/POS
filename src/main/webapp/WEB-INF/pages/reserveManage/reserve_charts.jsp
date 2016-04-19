@@ -1,33 +1,15 @@
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="UTF-8" language="java" %>
 <%@ include file="/common/taglibs.jsp" %>
 <head>
-    <title>停车位图表</title>
-
-    <!-- Bootstrap Core CSS -->
-    <%--<link href="${ctx}/static/css/bootstrap.min.css" rel="stylesheet">--%>
-
-
-
-    <!-- MetisMenu CSS -->
-    <%--<link href="${ctx}/static/css/metisMenu.min.css" rel="stylesheet">--%>
-
-    <!-- Timeline CSS -->
-    <%--<link href="${ctx}/static/css/timeline.css" rel="stylesheet">--%>
-
-    <!-- Custom CSS -->
-    <%--<link href="${ctx}/static/css/sb-admin-2.css" rel="stylesheet">--%>
-
+    <title>订单统计</title>
     <!-- ECharts单文件引入 -->
     <script src="${ctx}/static/js/echarts-all.js"></script>
-
     <!-- jQuery -->
     <script src="${ctx}/static/js/jquery.min.js"></script>
-
-
 </head>
 <body>
 
-<form:form modelAttribute="parkingSpaceManagePageSearcher" id="pageForm">
+<form:form modelAttribute="reserve" action="${ctx}/w/reserve/count" method="post" id="pageForm">
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
             <script type="text/javascript">
@@ -59,37 +41,12 @@
                                         <span class="input-group-addon">
                                             <i class="icon-calendar bigger-110"></i>
                                         </span>
-                                        <input class="form-control date-picker" id="date-picker" name="date-picker" type="text" data-date-format="yyyy-mm-dd" />
+                                        <input class="form-control date-picker" id="date" name="date" type="text" data-date-format="yyyy-mm-dd" />
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-1"></div>
 
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="col-sm-3 no-padding-right" style="height: 34px; padding-top: 5px;">
-                                        <%--<label class="control-label no-padding-right" for="id"> 车位查询 </label>--%>
-                                    </div>
-                                    <div class="col-sm-9 no-padding-left">
-                                        <%--<form:input id="id" path="id" class="form-control search-query"--%>
-                                                    <%--placeholder="请输入数值" value="${parkingSpaceManagePageSearcher.ppName}"/>--%>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12 col-sm-1"></div>
-
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="col-sm-3 no-padding-right" style="height: 34px; padding-top: 5px;">
-                                        <%--<label class="control-label no-padding-right" for="status">状态查询</label>--%>
-                                    </div>
-                                    <div class="col-sm-9 no-padding-left">
-                                        <%--<select id="status" name="status">--%>
-                                            <%--<option >全部</option>--%>
-                                            <%--<c:forEach items="${statusList}" var="statusList">--%>
-                                                <%--<option value="${statusList.get("status")}" <c:if test="${statusList.get('status') == parkingSpaceManagePageSearcher.status}"> selected </c:if> >${statusList.get("status")}</option>--%>
-                                            <%--</c:forEach>--%>
-                                        <%--</select>--%>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="row" style="margin-top: 10px">
@@ -157,12 +114,18 @@
 <script type="text/javascript" src="${ctx}/static/js/date-time/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/date-time/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/date-time/moment.min.js"></script>
-
 <script type="text/javascript">
 
-    $('#date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
-        $(this).prev().focus();
-    });
+    jQuery(function ($) {
+
+        $("#query").click(function () {
+            $("#pageForm").submit();
+        });
+
+        $('#date').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+    })
 </script>
 </body>
 

@@ -110,12 +110,6 @@ public class ParkingSpaceController extends BaseController{
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/w/parkingSpace/chart"},method = {RequestMethod.GET})
-    public ModelAndView chartParkingSpace(){
-        ModelAndView modelAndView = new ModelAndView("parkingSpaceManage/parkingSpace_charts");
-        return modelAndView;
-    }
-
     /**
      * 获取可用停车位
      * @return
