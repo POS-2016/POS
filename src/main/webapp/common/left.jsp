@@ -44,6 +44,7 @@
       <ul class="submenu">
         <li> <a href="/w/parkingSpace/list"> <i class="icon-double-angle-right"></i> 停车位查询 </a> </li>
         <li> <a href="/w/parkingSpace/manage"> <i class="icon-double-angle-right"></i> 停车位新增 </a> </li>
+        <li> <a href="/w/parkingSpace/chart"> <i class="icon-double-angle-right"></i> 停车位统计 </a> </li>
       </ul>
     </li>
 
